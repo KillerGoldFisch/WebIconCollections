@@ -3,6 +3,8 @@
 #r "nuget:Nuke.Common,5.0.2"
 #r "nuget:Svg.Skia,0.5.0"
 #r "nuget:SkiaSharp,2.80.2"
+#r "nuget:SkiaSharp.NativeAssets.Linux,2.80.2"
+#r "nuget:SkiaSharp.NativeAssets.Linux.NoDependencies,2.80.2"
 
 #load "nuget:Dotnet.Build, 0.7.1"
 
