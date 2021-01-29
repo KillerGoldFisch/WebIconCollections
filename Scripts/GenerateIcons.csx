@@ -47,7 +47,7 @@ foreach(var collSrcDir in IconCollectionSrcDir.GlobDirectories("*")) {
 
 Console.WriteLine("Converting Icons");
 
-/*foreach(var kv in iconsCollection) {
+foreach(var kv in iconsCollection) {
     var collDestDir = IconCollectionOutDir / kv.Key;
     var collSrcDir = IconCollectionSrcDir / kv.Key;
 
@@ -93,7 +93,7 @@ Console.WriteLine("Converting Icons");
             throw new Exception(destSvg);
         }
     }
-}*/
+}
 
 System.IO.StringWriter baseTextWriter = new System.IO.StringWriter();
 var tw = new System.CodeDom.Compiler.IndentedTextWriter(baseTextWriter, "    ");
