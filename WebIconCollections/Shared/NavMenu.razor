@@ -9,7 +9,7 @@
     <ul class="nav flex-column">
         @foreach (var kv in Collections.IconCollections)
         {
-            var link = "/IconCollection/" + kv.Key;
+            var link = "IconCollection/" + kv.Key;
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="@link">
                     <span class="oi oi-grid-three-up" aria-hidden="true"></span> @(kv.Key)
