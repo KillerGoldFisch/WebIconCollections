@@ -28,7 +28,7 @@ jobs:
     - name: Install dotnet-script
       run: dotnet tool install -g dotnet-script
 
-  - name: Process Images
+    - name: Process Images
       run: dotnet script Scripts/GenerateIcons.csx
 
     - name: Publish .NET Project
