@@ -1,0 +1,35 @@
+﻿@page "/IconDetails/{CollectionName}/{IconName}"
+
+
+
+@if (Collections.IconCollections.ContainsKey(CollectionName)) {
+    @if (Collections.IconCollections[CollectionName].Contains(IconName)) {
+        <h1 class="text-monospace">@IconName</h1>
+        <div class="divider"></div>
+        <h2>SVG</h2>
+        <img src="/images/IconCollections/@(CollectionName)/@(IconName).svg" style="width: 50%; height: 50%">
+        <div class="divider"></div>
+        <h2>PNG 128</h2>
+        <img src="/images/IconCollections/@(CollectionName)/@(IconName).128.png">
+        <div class="divider"></div>
+        <h2>PNG 64</h2>
+        <img src="/images/IconCollections/@(CollectionName)/@(IconName).64.png">
+        <div class="divider"></div>
+        <h2>PNG 32</h2>
+        <img src="/images/IconCollections/@(CollectionName)/@(IconName).32.png">
+        <div class="divider"></div>
+        <h2>PNG 16</h2>
+        <img src="/images/IconCollections/@(CollectionName)/@(IconName).16.png">
+    }
+} else {
+    <h1>Collection not found!</h1>
+}
+
+@code {
+
+    [Parameter]
+    public string CollectionName { get; set; }
+
+    [Parameter]
+    public string IconName { get; set; }
+}
