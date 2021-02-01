@@ -14,6 +14,9 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 using Nuke.Common.IO;
 using SkiaSharp;
 using Svg.Skia;
@@ -25,7 +28,8 @@ var ScriptDir = (AbsolutePath)GetScriptFolder();
 var RepoDir = ScriptDir / "..";
 var IconCollectionSrcDir = RepoDir / "IconCollections";
 var WebIconCollectionsDir = RepoDir / "WebIconCollections";
-var IconCollectionOutDir = WebIconCollectionsDir/ "wwwroot" / "images" / "IconCollections";
+var IconCollectionOutDir = WebIconCollectionsDir / "wwwroot" / "images" / "IconCollections";
+var IconCollectionOutJson = IconCollectionOutDir / "collection.json";
 
 var iconsCollection = new Dictionary<string, string[]>();
 
@@ -128,3 +132,7 @@ tw.WriteLine(@"
 }
 ");
 File.WriteAllText(WebIconCollectionsDir / "Collections.cs", baseTextWriter.ToString().Replace("\r\n", "\n"));
+
+
+var jsonString = JsonSerializer.Serialize(iconsCollection);
+File.WriteAllText(IconCollectionOutJson, jsonString);
