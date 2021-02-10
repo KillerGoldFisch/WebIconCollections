@@ -66,37 +66,40 @@ foreach(var kv in iconsCollection) {
 
         Console.WriteLine(srcSvg);
 
+        try {
+            File.Copy(srcSvg, destSvg);
 
-        File.Copy(srcSvg, destSvg);
+            if (SVG.Load(destSvg) is { }) {
 
-        if (SVG.Load(destSvg) is { }) {
+                { // 128
+                    var scale = 128.0f / (SVG.Picture?.CullRect.Width ?? 16.0f);
+                    var outFile = collDestDir / iconName + ".128.png";
+                    SVG.Save(outFile, BgColor, SKEncodedImageFormat.Png, 100, scale, scale);
+                }
 
-            { // 128
-                var scale = 128.0f / (SVG.Picture?.CullRect.Width ?? 16.0f);
-                var outFile = collDestDir / iconName + ".128.png";
-                SVG.Save(outFile, BgColor, SKEncodedImageFormat.Png, 100, scale, scale);
+                { // 64
+                    var scale = 64.0f / (SVG.Picture?.CullRect.Width ?? 16.0f);
+                    var outFile = collDestDir / iconName + ".64.png";
+                    SVG.Save(outFile, BgColor, SKEncodedImageFormat.Png, 100, scale, scale);
+                }
+
+                { // 32
+                    var scale = 32.0f / (SVG.Picture?.CullRect.Width ?? 16.0f);
+                    var outFile = collDestDir / iconName + ".32.png";
+                    SVG.Save(outFile, BgColor, SKEncodedImageFormat.Png, 100, scale, scale);
+                }
+
+                { // 16
+                    var scale = 16.0f / (SVG.Picture?.CullRect.Width ?? 16.0f);
+                    var outFile = collDestDir / iconName + ".16.png";
+                    SVG.Save(outFile, BgColor, SKEncodedImageFormat.Png, 100, scale, scale);
+                }
+
+            } else {
+                throw new Exception(destSvg);
             }
-
-            { // 64
-                var scale = 64.0f / (SVG.Picture?.CullRect.Width ?? 16.0f);
-                var outFile = collDestDir / iconName + ".64.png";
-                SVG.Save(outFile, BgColor, SKEncodedImageFormat.Png, 100, scale, scale);
-            }
-
-            { // 32
-                var scale = 32.0f / (SVG.Picture?.CullRect.Width ?? 16.0f);
-                var outFile = collDestDir / iconName + ".32.png";
-                SVG.Save(outFile, BgColor, SKEncodedImageFormat.Png, 100, scale, scale);
-            }
-
-            { // 16
-                var scale = 16.0f / (SVG.Picture?.CullRect.Width ?? 16.0f);
-                var outFile = collDestDir / iconName + ".16.png";
-                SVG.Save(outFile, BgColor, SKEncodedImageFormat.Png, 100, scale, scale);
-            }
-
-        } else {
-            throw new Exception(destSvg);
+        } catch (Exception ex) {
+            Console.WriteLine(ex);
         }
     }
 }
